@@ -1,19 +1,18 @@
 package com.sem08v.repository
 
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import com.sem08v.data.LugarDao
 import com.sem08v.model.Lugar
 
 class LugarRepository(private val lugarDao: LugarDao) {
-    suspend fun guardarLugar(lugar: Lugar) {
-        if (lugar.id == 0) {
-            lugarDao.agregarLugar(lugar)
-        } else {
-                lugarDao.actualizarLugar(lugar)
-        }
+     fun guardarLugar(lugar: Lugar) {
+        lugarDao.guardarLugar(lugar)
     }
-    suspend fun eliminarLugar(lugar: Lugar){
+     fun deleteLugar(lugar: Lugar){
         lugarDao.eliminarLugar(lugar)
     }
-    val obtenerLugares:LiveData<List<Lugar>> = lugarDao.getLugares()
+
+
+    val obtenerLugares: MutableLiveData<List<Lugar>> = lugarDao.getLugares()
 }
